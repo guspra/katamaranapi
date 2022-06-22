@@ -76,6 +76,149 @@ class Agenda extends CI_Controller {
 		}
 	}
 
+	public function agendaByRangeTanggal($tanggalAwal, $tanggalAkhir) //parameter didapet dari url
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET' || $this->uri->segment(3) == ''){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_auth_client = $this->MyModel->check_auth_client();
+			if($check_auth_client == true){
+		        	$response = $this->MyModel->auth();
+		        	if($response['status'] == 200){
+		        		$resp = $this->MyModel->agendaByRangeTanggal($tanggalAwal, $tanggalAkhir);
+						json_output($response['status'],$resp);
+		        	}
+			}
+		}
+	}
+
+	public function agendaMingguLalu() //parameter didapet dari url
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_auth_client = $this->MyModel->check_auth_client();
+			if($check_auth_client == true){
+		        	$response = $this->MyModel->auth();
+		        	if($response['status'] == 200){
+
+						$tanggalAwal = date("Y-m-d", strtotime("Monday previous week"));
+						$tanggalAkhir = date("Y-m-d", strtotime("Sunday previous week"));
+
+		        		$resp = $this->MyModel->agendaByRangeTanggal($tanggalAwal, $tanggalAkhir);
+						json_output($response['status'],$resp);
+		        	}
+			}
+		}
+	}
+
+	public function agendaMingguIni() //parameter didapet dari url
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_auth_client = $this->MyModel->check_auth_client();
+			if($check_auth_client == true){
+		        	$response = $this->MyModel->auth();
+		        	if($response['status'] == 200){
+
+						$tanggalAwal = date("Y-m-d", strtotime("Monday this week"));
+						$tanggalAkhir = date("Y-m-d", strtotime("Sunday this week"));
+
+		        		$resp = $this->MyModel->agendaByRangeTanggal($tanggalAwal, $tanggalAkhir);
+						json_output($response['status'],$resp);
+		        	}
+			}
+		}
+	}
+
+	public function agendaMingguDepan() //parameter didapet dari url
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_auth_client = $this->MyModel->check_auth_client();
+			if($check_auth_client == true){
+		        	$response = $this->MyModel->auth();
+		        	if($response['status'] == 200){
+
+						$tanggalAwal = date("Y-m-d", strtotime("Monday next week"));
+						$tanggalAkhir = date("Y-m-d", strtotime("Sunday next week"));
+
+		        		$resp = $this->MyModel->agendaByRangeTanggal($tanggalAwal, $tanggalAkhir);
+						json_output($response['status'],$resp);
+		        	}
+			}
+		}
+	}
+
+	public function agendaBulanLalu() //parameter didapet dari url
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_auth_client = $this->MyModel->check_auth_client();
+			if($check_auth_client == true){
+		        	$response = $this->MyModel->auth();
+		        	if($response['status'] == 200){
+
+						$tanggalAwal = date("Y-m-d", strtotime("first day of previous month"));
+						$tanggalAkhir = date("Y-m-d", strtotime("last day of previous month"));
+
+		        		$resp = $this->MyModel->agendaByRangeTanggal($tanggalAwal, $tanggalAkhir);
+						json_output($response['status'],$resp);
+		        	}
+			}
+		}
+	}
+
+	public function agendaBulanIni() //parameter didapet dari url
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_auth_client = $this->MyModel->check_auth_client();
+			if($check_auth_client == true){
+		        	$response = $this->MyModel->auth();
+		        	if($response['status'] == 200){
+
+						$tanggalAwal = date("Y-m-d", strtotime("first day of this month"));
+						$tanggalAkhir = date("Y-m-d", strtotime("last day of this month"));
+
+		        		$resp = $this->MyModel->agendaByRangeTanggal($tanggalAwal, $tanggalAkhir);
+						json_output($response['status'],$resp);
+		        	}
+			}
+		}
+	}
+
+	public function agendaBulanDepan() //parameter didapet dari url
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_auth_client = $this->MyModel->check_auth_client();
+			if($check_auth_client == true){
+		        	$response = $this->MyModel->auth();
+		        	if($response['status'] == 200){
+
+						$tanggalAwal = date("Y-m-d", strtotime("first day of next month"));
+						$tanggalAkhir = date("Y-m-d", strtotime("last day of next month"));
+
+		        		$resp = $this->MyModel->agendaByRangeTanggal($tanggalAwal, $tanggalAkhir);
+						json_output($response['status'],$resp);
+		        	}
+			}
+		}
+	}
+
     public function create()
 	{
 		$method = $_SERVER['REQUEST_METHOD'];
