@@ -278,12 +278,12 @@ class MyModel extends CI_Model {
     }
 
     public function agendaByTanggal($tanggal){
-        return $this->db->query("SELECT * FROM `agenda` WHERE DATE(tanggal) = '$tanggal'
+        return $this->db->query("SELECT * FROM `agenda` WHERE DATE(tanggal) = '$tanggal' ORDER BY tanggal
         ")->result();
     }
 
     public function agendaByRangeTanggal($tanggalAwal, $tanggalAkhir){
-        return $this->db->query("SELECT * FROM `agenda` WHERE DATE(tanggal) BETWEEN '$tanggalAwal' AND '$tanggalAkhir'
+        return $this->db->query("SELECT * FROM `agenda` WHERE DATE(tanggal) BETWEEN '$tanggalAwal' AND '$tanggalAkhir' ORDER BY tanggal
         ")->result();
     }
 
