@@ -287,6 +287,11 @@ class MyModel extends CI_Model {
         ")->result();
     }
 
+    public function agendaByRangeTanggalIdUser($tanggalAwal, $tanggalAkhir, $idUser){
+        return $this->db->query("SELECT * FROM `agenda` WHERE DATE(tanggal) BETWEEN '$tanggalAwal' AND '$tanggalAkhir' AND id_user = $idUser ORDER BY tanggal
+        ")->result();
+    }
+
     
     public function total_pagu(){
         return $this->db->query("SELECT kode_satker, SUM(nominal_akun) AS jumlah FROM api_dipa_pusdatin GROUP BY kode_satker")->result();

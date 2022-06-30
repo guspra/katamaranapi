@@ -93,6 +93,23 @@ class Agenda extends CI_Controller {
 		}
 	}
 
+	public function agendaByRangeTanggalIdUser($tanggalAwal, $tanggalAkhir, $idUser) //parameter didapet dari url
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET' || $this->uri->segment(3) == ''){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_auth_client = $this->MyModel->check_auth_client();
+			if($check_auth_client == true){
+		        	$response = $this->MyModel->auth();
+		        	if($response['status'] == 200){
+		        		$resp = $this->MyModel->agendaByRangeTanggalIdUser($tanggalAwal, $tanggalAkhir, $idUser);
+						json_output($response['status'],$resp);
+		        	}
+			}
+		}
+	}
+
 	public function agendaMingguLalu() //parameter didapet dari url
 	{
 		$method = $_SERVER['REQUEST_METHOD'];
