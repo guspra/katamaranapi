@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class DataDukung extends CI_Controller {
-	var $table_name = 'data_dukung';
+class Tesapi extends CI_Controller {
+	var $table_name = 'tesapi';
 
     public function __construct()
     {
@@ -71,7 +71,7 @@ class DataDukung extends CI_Controller {
 		        	$respStatus = $response['status'];
 		        	if($response['status'] == 200){
 						$params = json_decode(file_get_contents('php://input'), TRUE);
-						if (empty($params['id_folder']) || empty($params['uraian']) || empty($params['url_file'])) {//ISI NAMA PARAMETER INPUT POST NYA
+						if (empty($params['nama'])) {//ISI NAMA PARAMETER INPUT POST NYA
 							$respStatus = 400;
 							$resp = array('status' => 400,'message' =>  'Input form masih salah, silahkan coba lagi');
 						} else {
