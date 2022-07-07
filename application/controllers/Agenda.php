@@ -248,7 +248,7 @@ class Agenda extends CI_Controller {
 		        	$respStatus = $response['status'];
 		        	if($response['status'] == 200){
 						$params = json_decode(file_get_contents('php://input'), TRUE);
-						if (empty($params['nama']) || empty($params['deskripsi']) || empty($params['waktu']) || empty($params['tempat']) || empty($params['pakaian']) || empty($params['peserta'])) {//ISI NAMA PARAMETER INPUT POST NYA
+						if (empty($params['nama']) ) {//ISI NAMA PARAMETER INPUT POST NYA
 							$respStatus = 400;
 							$resp = array('status' => 400,'message' =>  'Input form masih salah, silahkan coba lagi');
 						} else {
@@ -273,7 +273,7 @@ class Agenda extends CI_Controller {
 				if($response['status'] == 200){
 					$params = json_decode(file_get_contents('php://input'), TRUE);
 					$params['updated_at'] = date('Y-m-d H:i:s');
-					if (empty($params['nama']) || empty($params['deskripsi']) || empty($params['waktu']) || empty($params['tempat']) || empty($params['pakaian']) || empty($params['peserta'])) { //CEK PARAMETER INPUT NYA
+					if (empty($params['nama'])) { //CEK PARAMETER INPUT NYA
 						$respStatus = 400;
 						$resp = array('status' => 400,'message' =>  'Input form masih salah, silahkan coba lagi');
 					} else {
